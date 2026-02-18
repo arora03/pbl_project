@@ -15,7 +15,7 @@
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .glass-strong { background: rgba(20, 20, 30, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .gradient-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
+
         #timerContainer { background: #ffffff; color: #020617; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 3px solid #3b82f6; z-index: 1000; }
         @keyframes flicker { 0%, 100% { background-color: #ffffff; } 50% { background-color: #fca5a5; } }
         .timer-warning { animation: flicker 1s infinite; border: 3px solid #ef4444 !important; color: #b91c1c !important; }
@@ -24,263 +24,166 @@
 </head>
 <body onload="startTimer()">
 
-    <div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
-        <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
-        <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
+<div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
+    <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
+    <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
+</div>
+
+<nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-4">
+        <div class="bg-white p-1 rounded flex items-center justify-center shadow-md" style="height: 48px; width: 48px;">
+            <img src="mujlogo.jpg" alt="MUJ" class="h-full w-auto object-contain">
+        </div>
+        <div class="flex flex-col text-left">
+            <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span class="text-blue-500 italic">2026</span></span>
+            <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer Science & Engineering</span>
+        </div>
     </div>
+</nav>
 
-    <nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-4">
-            <div class="bg-white p-1 rounded flex items-center justify-center shadow-md" style="height: 48px; width: 48px;">
-                <img src="mujlogo.jpg" alt="MUJ" class="h-full w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/Manipal_University_Jaipur_logo.svg/1200px-Manipal_University_Jaipur_logo.svg.png'">
-            </div>
-            <div class="flex flex-col text-left">
-                <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span class="text-blue-500 italic">2026</span></span>
-                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer Science & Engineering</span>
-            </div>
-        </div>
-        <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
-            <a href="#problem" class="hover:text-blue-400 transition">Problem</a>
-            <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
-            <a href="#comparison" class="hover:text-blue-400 transition">Comparison</a>
-            <a href="#results" class="hover:text-blue-400 transition">Results</a>
-            <a href="#team" class="hover:text-blue-400 transition">Team</a>
-        </div>
-    </nav>
+<main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
 
-    <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
-        
-        <section class="text-center">
-            <div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">REG NO: 23FE10CSE00637</div>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 uppercase leading-tight">
-                Swin<span class="gradient-text">Stego</span>
-            </h1>
-            <h2 class="text-2xl font-bold text-slate-300 mb-8 tracking-tight">Mitigating Texture Drift in Generative Steganography</h2>
-            <p class="text-slate-400 max-w-3xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
-                "Hypothesis: Replacing Global Attention (ViT) with Hierarchical Shifted Window Transformers (Swin) restores local texture fidelity, eliminates ghosting artifacts, and reduces computational complexity from Quadratic \(O(N^2)\) to Linear \(O(N)\)."
-            </p>
-        </section>
+<section class="text-center">
+<div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">
+REG NO: 23FE10CSE00637
+</div>
 
-        <section id="problem" class="grid md:grid-cols-2 gap-12 items-stretch">
-            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-center border-l-4 border-blue-600">
-                <h2 class="text-3xl font-extrabold mb-6">The Problem: Texture Drift</h2>
-                <p class="text-slate-400 leading-relaxed text-justify mb-4">
-                    <strong>1. Visual Artifacts:</strong> Standard Vision Transformers (ViT) use global attention that "washes out" fine details. This results in "Texture Drift"—faint, blocky, grid-like ghosting artifacts in the stego-image.
-                </p>
-                <p class="text-slate-400 leading-relaxed text-justify">
-                    <strong>2. Computational Cost:</strong> ViT has a complexity of \(O(N^2)\). This makes it impractical for high-resolution images (e.g., 1024x1024), limiting real-world application.
-                </p>
-            </div>
-            <div class="space-y-6">
-                <div class="glass p-4 rounded-3xl flex items-center justify-center bg-black/20" style="height: 200px;">
-                    <div class="text-center opacity-50">
-                        <i class="fas fa-image text-4xl mb-2"></i>
-                        <p class="text-xs uppercase tracking-widest">[Texture Drift / Checkerboard Artifacts]</p>
-                    </div>
-                </div>
+<h1 class="text-5xl md:text-7xl font-extrabold mb-8 uppercase leading-tight">
+Swin<span class="gradient-text">Stego</span>
+</h1>
 
-                <div class="glass p-7 rounded-3xl border-r-4 border-purple-500/50">
-                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Gap Analysis</h3>
-                    <p class="text-sm text-slate-500 italic">"TransStego" (Xiao et al., 2025) solved CNN locality issues but introduced global blurring. We need a hybrid approach: Local Attention + Global Context.</p>
-                </div>
-            </div>
-        </section>
+<h2 class="text-2xl font-bold text-slate-300 mb-8 tracking-tight">
+Mitigating Texture Drift in Generative Steganography
+</h2>
 
-        <section id="methodology" class="space-y-12">
-            <h2 class="text-4xl font-black text-center uppercase tracking-tight">System <span class="text-blue-500">Methodology</span></h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-3xl text-center">
-                    <i class="fas fa-layer-group text-blue-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">1. Hierarchical Input</h3>
-                    <p class="text-sm text-slate-500">Cover Image + Secret Message concatenated into a tensor. Processed via Swin Blocks using W-MSA and SW-MSA.</p>
-                </div>
-                <div class="glass p-8 rounded-3xl text-center border-2 border-purple-500/20">
-                    <i class="fas fa-random text-purple-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">2. Shifted Windows</h3>
-                    <p class="text-sm text-slate-500">Attention is computed locally within windows (preserving texture), then windows shift to share global context.</p>
-                </div>
-                <div class="glass p-8 rounded-3xl text-center">
-                    <i class="fas fa-balance-scale text-green-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-green-400">3. WGAN Critic</h3>
-                    <p class="text-sm text-slate-500">Uses Earth Mover's Distance instead of standard GAN loss to prevent mode collapse and ensure statistical indistinguishability.</p>
-                </div>
-            </div>
+<p class="text-slate-400 max-w-3xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
+"Hypothesis: Replacing Global Attention (ViT) with Hierarchical Shifted Window Transformers (Swin) reduces computational complexity from Quadratic \(O(N^2)\) to Linear \(O(N)\) while minimizing texture distortion and perceptual artifacts in stego images."
+</p>
+</section>
 
-            <div class="glass p-8 rounded-3xl">
-                <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-center text-slate-400">Loss Function Strategy</h3>
-                <p class="text-center text-lg font-mono text-blue-300">
-                    $$L_{total} = \lambda_1 L_{pixel} + \lambda_2 L_{perceptual} + \lambda_3 L_{message} + \lambda_4 L_{adv}$$
-                </p>
-                <p class="text-center text-slate-500 text-xs mt-4 max-w-2xl mx-auto">
-                    Optimizing for Pixel Fidelity (L1), Human Perception (LPIPS), Message Recovery (BCE), and Adversarial Realism (WGAN).
-                </p>
-            </div>
-        </section>
+<section id="methodology" class="space-y-12">
+<h2 class="text-4xl font-black text-center uppercase tracking-tight">
+System <span class="text-blue-500">Methodology</span>
+</h2>
 
-        <section id="comparison" class="glass-strong p-10 rounded-[2.5rem]">
-            <h2 class="text-2xl font-black mb-8 text-center uppercase tracking-tight">Architectural <span class="text-purple-500">Evolution</span></h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b border-slate-700 text-xs uppercase tracking-widest text-slate-400">
-                            <th class="p-4">Feature</th>
-                            <th class="p-4 text-red-400">Vision Transformer (ViT)</th>
-                            <th class="p-4 text-green-400">Swin Transformer (Ours)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm font-medium text-slate-300">
-                        <tr class="border-b border-slate-800/50">
-                            <td class="p-4">Attention Mechanism</td>
-                            <td class="p-4">Global (All patches at once)</td>
-                            <td class="p-4">Local (Shifted Windows)</td>
-                        </tr>
-                        <tr class="border-b border-slate-800/50">
-                            <td class="p-4">Complexity</td>
-                            <td class="p-4 font-mono text-red-400">Quadratic \(O(N^2)\)</td>
-                            <td class="p-4 font-mono text-green-400">Linear \(O(N)\)</td>
-                        </tr>
-                        <tr class="border-b border-slate-800/50">
-                            <td class="p-4">Visual Output</td>
-                            <td class="p-4">Blocky / Grid Artifacts</td>
-                            <td class="p-4">Content-Adaptive Texture</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Scalability</td>
-                            <td class="p-4">Low (Impractical for HD)</td>
-                            <td class="p-4">High (Scalable to 1024px+)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+<div class="grid md:grid-cols-3 gap-8">
 
-        <section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
-            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Results & <span class="text-blue-500">Analysis</span></h2>
-            
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="h-80 relative">
-                    <canvas id="resultsChart"></canvas>
-                </div>
-                <div class="space-y-6">
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 shadow-inner text-center">
-                            <span class="block text-slate-400 font-bold uppercase text-[9px] tracking-widest">MS-SSIM</span>
-                            <span class="text-blue-400 font-mono font-black text-2xl">0.9952</span>
-                            <span class="block text-[8px] text-green-500 mt-1">vs 0.9244</span>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 shadow-inner text-center">
-                            <span class="block text-slate-400 font-bold uppercase text-[9px] tracking-widest">PSNR</span>
-                            <span class="text-blue-400 font-mono font-black text-2xl">36.23</span>
-                            <span class="block text-[8px] text-green-500 mt-1">dB</span>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 shadow-inner text-center">
-                            <span class="block text-slate-400 font-bold uppercase text-[9px] tracking-widest">Accuracy</span>
-                            <span class="text-purple-400 font-mono font-black text-2xl">99.39%</span>
-                            <span class="block text-[8px] text-green-500 mt-1">Bit Recovery</span>
-                        </div>
-                    </div>
-                    
-                    <div class="glass p-6 rounded-xl">
-                        <h4 class="font-bold text-xs uppercase tracking-widest mb-2 text-slate-300">Visual Analysis</h4>
-                        <p class="text-slate-500 text-sm italic text-justify leading-relaxed">
-                            "Residual heatmaps show that embedding noise concentrates within high-frequency textures (like fur/hair) rather than flat backgrounds, effectively eliminating ghosting artifacts."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div class="glass p-8 rounded-3xl text-center">
+<i class="fas fa-layer-group text-blue-500 text-3xl mb-4"></i>
+<h3 class="font-bold mb-2 uppercase text-xs tracking-widest">1. Input Processing</h3>
+<p class="text-sm text-slate-500">
+Cover image and secret message are combined into a single tensor and passed into the Swin Transformer backbone.
+</p>
+</div>
 
-        <section id="team" class="text-center pt-10 border-t border-slate-900">
-            <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
-            <div class="flex flex-wrap justify-center gap-10">
-                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600 hover:scale-105 transition-transform">
-                    <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Supervised By</p>
-                    <p class="font-black text-xl text-slate-100">Dr. Neha Janu</p>
-                    <p class="text-[10px] text-slate-500 mt-1">Project Guide</p>
-                </div>
-                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700 hover:scale-105 transition-transform">
-                    <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Submitted By</p>
-                    <p class="font-black text-xl text-slate-100">Anirudh Arora</p>
-                    <p class="text-[10px] text-slate-500 mt-1">Reg No: 23FE10CSE00637</p>
-                </div>
-            </div>
-        </section>
-    </main>
+<div class="glass p-8 rounded-3xl text-center">
+<i class="fas fa-random text-purple-500 text-3xl mb-4"></i>
+<h3 class="font-bold mb-2 uppercase text-xs tracking-widest">2. Shifted Windows</h3>
+<p class="text-sm text-slate-500">
+Attention is computed locally within small windows to preserve fine textures, and windows shift across layers to gradually build global context efficiently.
+</p>
+</div>
 
-    <footer class="py-12 text-center bg-black/40 border-t border-slate-900">
-        <div class="flex justify-center items-center gap-2 mb-4">
-             <img src="mujlogo.jpg" alt="MUJ" class="h-8 w-auto grayscale opacity-50" onerror="this.style.display='none'">
-        </div>
-        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Manipal University Jaipur</p>
-        <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of Computer Science & Engineering • 2026</p>
-    </footer>
+<div class="glass p-8 rounded-3xl text-center">
+<i class="fas fa-sync-alt text-green-500 text-3xl mb-4"></i>
+<h3 class="font-bold mb-2 uppercase text-xs tracking-widest">3. Spatial Transformer (STN)</h3>
+<p class="text-sm text-slate-500">
+Learns to correct geometric distortions such as rotation and scaling before message extraction, improving robustness against spatial attacks.
+</p>
+</div>
 
-    <script>
-        // TIMER LOGIC
-        let sec = 0;
-        let timer = null;
-        function startTimer() {
-            timer = setInterval(() => {
-                sec++;
-                let m = Math.floor(sec / 60);
-                let s = sec % 60;
-                document.getElementById('displayTime').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-                
-                if (sec >= 480 && sec < 600) { 
-                    document.getElementById('timerContainer').classList.add('timer-warning');
-                    document.getElementById('timerIcon').classList.replace('fa-hourglass-start', 'fa-hourglass-half');
-                } else if (sec >= 600) { 
-                    clearInterval(timer);
-                    document.getElementById('timerContainer').classList.replace('timer-warning', 'timer-stop');
-                    document.getElementById('displayTime').innerText = "10:00";
-                    document.getElementById('timerIcon').classList.replace('fa-hourglass-half', 'fa-hourglass-end');
-                }
-            }, 1000);
-        }
+</div>
+</section>
 
-        // RESULTS CHART
-        const ctx = document.getElementById('resultsChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['ViT Baseline', 'SwinStego (Ours)'],
-                datasets: [{
-                    label: 'MS-SSIM (Structural Similarity)',
-                    data: [0.9244, 0.9952], 
-                    backgroundColor: ['#334155', '#3b82f6'],
-                    borderRadius: 15,
-                    barThickness: 60,
-                    borderWidth: 2,
-                    borderColor: 'rgba(255,255,255,0.1)'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { 
-                    legend: { display: false },
-                    tooltip: {
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        titleFont: { family: 'Plus Jakarta Sans' },
-                        bodyFont: { family: 'Plus Jakarta Sans' }
-                    }
-                },
-                scales: { 
-                    y: { 
-                        beginAtZero: false, 
-                        min: 0.85, 
-                        max: 1.0, 
-                        grid: { color: '#ffffff05' }, 
-                        ticks: { color: '#94a3b8', font: { family: 'Mono' } } 
-                    },
-                    x: { 
-                        grid: { display: false }, 
-                        ticks: { color: '#f8fafc', font: { weight: 'bold' } } 
-                    }
-                }
-            }
-        });
-    </script>
+<section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
+<h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">
+Results
+</h2>
+
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="h-80 relative">
+<canvas id="resultsChart"></canvas>
+</div>
+
+<div class="grid grid-cols-3 gap-4">
+<div class="p-4 rounded-2xl bg-white/5 text-center">
+<span class="block text-slate-400 text-xs uppercase">PSNR</span>
+<span class="text-blue-400 font-mono font-black text-2xl">40.2</span>
+<span class="block text-[8px] text-green-500 mt-1">dB</span>
+</div>
+
+<div class="p-4 rounded-2xl bg-white/5 text-center">
+<span class="block text-slate-400 text-xs uppercase">SSIM</span>
+<span class="text-purple-400 font-mono font-black text-2xl">0.9732</span>
+</div>
+
+<div class="p-4 rounded-2xl bg-white/5 text-center">
+<span class="block text-slate-400 text-xs uppercase">Accuracy</span>
+<span class="text-green-400 font-mono font-black text-2xl">99.39%</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="team" class="text-center pt-10 border-t border-slate-900">
+<h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">
+Academic Credits
+</h2>
+
+<div class="flex flex-wrap justify-center gap-10">
+<div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
+<p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">
+Supervised By
+</p>
+<p class="font-black text-xl text-slate-100">
+Dr. Neha Janu
+</p>
+<p class="text-[10px] text-slate-500 mt-1">
+Project Guide
+</p>
+</div>
+
+<div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
+<p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">
+Submitted By
+</p>
+<p class="font-black text-xl text-slate-100">
+Anirudh Arora
+</p>
+<p class="text-[10px] text-slate-500 mt-1">
+Reg No: 23FE10CSE00637
+</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<script>
+const ctx = document.getElementById('resultsChart').getContext('2d');
+new Chart(ctx, {
+type: 'bar',
+data: {
+labels: ['ViT Baseline', 'SwinStego (Ours)'],
+datasets: [{
+label: 'PSNR (dB)',
+data: [34.5, 40.2],
+backgroundColor: ['#334155', '#3b82f6'],
+borderRadius: 15,
+barThickness: 60
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+plugins: { legend: { display: false } },
+scales: {
+y: { min: 30, max: 45 },
+x: { grid: { display: false } }
+}
+}
+});
+</script>
+
 </body>
 </html>
